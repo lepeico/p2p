@@ -13,7 +13,7 @@
     "start:dev": "nodemon index.js --trace-warnings",
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "eslint . --fix --ignore-path .gitignore",
-    "test": "snyk test",
+    "test": "jest",
     "test:watch": "",
     "test:cov": "",
     "test:debug": "",
@@ -21,11 +21,7 @@
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect"
   },
-  "dependencies": {
-    "ws": "^7.3.1"
-  },
   "devDependencies": {
-    "eslint-plugin-prettier": "^3.1.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "commitizen": "^4.1.2",
@@ -35,6 +31,8 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.4.2",
     "prettier": "^1.19.1",
     "snyk": "^1.406.0"
   },
