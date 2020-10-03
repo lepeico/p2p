@@ -9,7 +9,7 @@
     "doc": "typedoc --out docs/src/ --readme ./README.md",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "format": "prettier --write \"./**/*.{md,html,css,json,js,jsx,ts,tsx}\"",
-    "start": "node  index.js",
+    "start": "node server.js",
     "start:dev": "nodemon index.js --trace-warnings",
     "lint": "eslint . --ignore-path .gitignore",
     "lint:fix": "eslint . --fix --ignore-path .gitignore",
