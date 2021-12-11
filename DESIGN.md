@@ -42,3 +42,6 @@ It might be nice to have an option to create secured networks (in which nodes wo
 
 ### Observability
 Node should be able to shut down gracefully (sending bye-message to the network), also to have a health-endpoint to query its current status and the logger to log info and error messages.
+
+## Demo – cli chat
+2 IO-handlers for reading and writing message from/to network wrapped.
