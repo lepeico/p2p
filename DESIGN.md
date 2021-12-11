@@ -17,6 +17,10 @@ For now there are no more nice frameworks for that, except lib-p2p, which is inc
 
 ## The actual design
 ### APIs
+Node-wrapper might have constructor (builder) for optional configuration via "Options" pattern with next options:
+* Transport (default TCP or WS + TLS, WebRTC or QUIC)
+* Peer discovery method (probably direct connection for all-known addresses, MDNS or Rendezvous)
+* Securing Strategy (using Noise protocol or similar)
 Injectable provider would consist of 
 * getters for current network info 
 * methods to send data 
