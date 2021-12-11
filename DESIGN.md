@@ -16,12 +16,15 @@ For now there are no more nice frameworks for that, except lib-p2p, which is inc
 * Chassis or distributed computations
 
 ## The actual design
+### System-context-diagram 
+TODO
 ### APIs
-Node-wrapper might have constructor (builder) for optional configuration via "Options" pattern with next options:
+#### Node-wrapper might have constructor (builder) for optional configuration via "Options" pattern with next options:
 * Transport (default TCP or WS + TLS, WebRTC or QUIC)
 * Peer discovery method (probably direct connection for all-known addresses, MDNS or Rendezvous)
 * Securing Strategy (using Noise protocol or similar)
-Injectable provider would consist of 
+
+#### Injectable provider would consist of 
 * getters for current network info 
 * methods to send data 
 * the channel to subscribe for other nodes updates.
@@ -29,6 +32,9 @@ Injectable provider would consist of
 ### Data storage 
 P2P node lib optionally might accept an interface for any Data-repository to save and get meta-info, such as known nodes and las ping time. 
 It would use in-memory database as a default.
+
+### Degree of constraint
+TODO
 
 ## Cross-cutting concerns
 ### Security
