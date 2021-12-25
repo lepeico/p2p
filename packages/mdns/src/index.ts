@@ -13,7 +13,7 @@ console.error = debug('@p2p/mdns:error')
 const DEFAULT_OPTIONS: MDNS.Options = {
   tag: 'p2p',
   multiAddrs: [],
-  distribute: true,
+  distribute: false,
   queryInterval: 1000 * 5,
 }
 
@@ -33,7 +33,7 @@ export default class MDNS extends EventEmitter {
   private mdns?: MulticastDNS
   private queryInterval?: NodeJS.Timeout
 
-  constructor(nodeID: string, options?: MDNS.Options) {
+  constructor(nodeID: string, options?: Partial<MDNS.Options>) {
     super()
 
     this.nodeID = nodeID
@@ -46,7 +46,7 @@ export default class MDNS extends EventEmitter {
     console.debug('Created a MNDS instance')
   }
 
-  start = async (port: number = 13579) => {
+  start = (port: number = 13579) => {
     if (this.mdns) return
 
     this.mdns = mDNS({ port })
