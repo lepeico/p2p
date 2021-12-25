@@ -1,9 +1,8 @@
-'use strict'
-
-import * as os from 'os'
-import { MulticastDNS, QueryPacket } from 'multicast-dns'
-import { Multiaddr, MultiaddrObject } from 'multiaddr'
 import { Answer } from 'dns-packet'
+import { Multiaddr, MultiaddrObject } from 'multiaddr'
+import { MulticastDNS, QueryPacket } from 'multicast-dns'
+import { hostname } from 'os'
+
 import debug = require('debug')
 
 console.debug = debug('@p2p/mdns')
@@ -56,7 +55,7 @@ export default function (
         priority: 10,
         weight: 1,
         port: port,
-        target: os.hostname(),
+        target: hostname(),
       },
     })
 
@@ -71,7 +70,7 @@ export default function (
     addresses.forEach((addr: MultiaddrObject) => {
       if ([4, 6].includes(addr.family)) {
         answers.push({
-          name: os.hostname(),
+          name: hostname(),
           type: addr.family === 4 ? 'A' : 'AAAA',
           class: 'IN',
           ttl: 120,

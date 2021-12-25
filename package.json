@@ -1,10 +1,8 @@
 {
   "name": "p2p",
   "version": "0.0.0",
+  "private": true,
   "repository": "git@github.com:lepeico/p2p.git",
-  "engines": {
-    "node": ">=12.x"
-  },
   "workspaces": [
     "packages/*"
   ],
@@ -12,13 +10,17 @@
     "lint": "prettier ./**",
     "lint:fix": "prettier ./** --write"
   },
-  "private": true,
-  "devDependencies": {
-    "eslint": "^8.1.0",
-    "lerna": "^4.0.0",
-    "prettier": "^2.4.1"
-  },
   "dependencies": {
     "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.1.1",
+    "eslint": "^8.1.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.4.1",
+    "prettier-plugin-packagejson": "^2.2.15"
+  },
+  "engines": {
+    "node": ">=12.x"
   }
 }

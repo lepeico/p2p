@@ -1,11 +1,10 @@
-'use strict'
+import { EventEmitter } from 'events'
+import { Multiaddr } from 'multiaddr'
+import { MulticastDNS, QueryPacket } from 'multicast-dns'
 
 import debug = require('debug')
 import mDNS = require('multicast-dns')
 import handle = require('./handle')
-import { EventEmitter } from 'events'
-import { MulticastDNS, QueryPacket } from 'multicast-dns'
-import { Multiaddr } from 'multiaddr'
 
 console.debug = debug('@p2p/mdns')
 console.error = debug('@p2p/mdns:error')

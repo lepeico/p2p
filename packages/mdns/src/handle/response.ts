@@ -1,8 +1,7 @@
-'use strict'
-
-import { QueryPacket } from 'multicast-dns'
-import { Multiaddr } from 'multiaddr'
 import { Answer, SrvAnswer, StringAnswer, TxtAnswer } from 'dns-packet'
+import { Multiaddr } from 'multiaddr'
+import { QueryPacket } from 'multicast-dns'
+
 import debug = require('debug')
 
 console.debug = debug('@p2p/mdns')
