@@ -1,57 +1,24 @@
 {
   "name": "p2p",
-  "version": "0.0.2",
-  "main": "index.js",
-  "author": "Eugene Lepeico <eugenelepeico@gmail.com>",
-  "license": "MIT",
+  "version": "0.0.0",
+  "repository": "git@github.com:lepeico/p2p.git",
+  "engines": {
+    "node": ">=12.x"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "commit": "git-cz",
-    "doc": "typedoc --out docs/src/ --readme ./README.md",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "format": "prettier --write \"./**/*.{md,html,css,json,js,jsx,ts,tsx}\"",
-    "start": "node server.js",
-    "start:dev": "nodemon index.js --trace-warnings",
-    "lint": "eslint . --ignore-path .gitignore",
-    "lint:fix": "eslint . --fix --ignore-path .gitignore",
-    "test": "jest",
-    "test:watch": "",
-    "test:cov": "",
-    "test:debug": "",
-    "test:e2e": "",
-    "snyk-protect": "snyk protect",
-    "prepare": "yarn run snyk-protect"
+    "lint": "prettier ./**",
+    "lint:fix": "prettier ./** --write"
   },
+  "private": true,
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "commitizen": "^4.1.2",
-    "conventional-changelog-cli": "^2.0.34",
-    "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.10.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "jest": "^26.4.2",
-    "prettier": "^1.19.1",
-    "snyk": "^1.406.0"
+    "eslint": "^8.1.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.4.1"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "yarn lint",
-      "yarn format"
-    ]
-  },
-  "snyk": true
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
 }
