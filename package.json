@@ -1,24 +1,32 @@
 {
   "name": "p2p",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "repository": "git@github.com:lepeico/p2p.git",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "lint": "prettier ./**",
-    "lint:fix": "prettier ./** --write"
+    "lint": "eslint --ext .js,.ts . --fix"
   },
   "dependencies": {
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.1.1",
-    "eslint": "^8.1.0",
+    "@tsconfig/node10": "^1.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.0.0",
     "lerna": "^4.0.0",
     "prettier": "^2.4.1",
-    "prettier-plugin-packagejson": "^2.2.15"
+    "prettier-plugin-packagejson": "^2.2.15",
+    "typescript": "*"
   },
   "engines": {
     "node": ">=12.x"

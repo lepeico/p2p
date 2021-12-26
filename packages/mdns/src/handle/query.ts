@@ -1,6 +1,6 @@
-import { Answer } from 'dns-packet'
-import { Multiaddr, MultiaddrObject } from 'multiaddr'
-import { MulticastDNS, QueryPacket } from 'multicast-dns'
+import type { Answer } from 'dns-packet'
+import type { Multiaddr, MultiaddrObject } from 'multiaddr'
+import type { MulticastDNS, QueryPacket } from 'multicast-dns'
 import { hostname } from 'os'
 
 import debug = require('debug')
@@ -14,7 +14,7 @@ export default function (
   multiAddrs: Multiaddr[],
   tag: string,
   broadcast: boolean,
-) {
+): any {
   if (!broadcast) {
     return
   }
@@ -29,11 +29,14 @@ export default function (
     [],
   )
 
-  if (!addresses.length) {
+  if (addresses.length === 0) {
     return
   }
 
-  if (queryPacket.questions[0] && queryPacket.questions[0].name === tag) {
+  if (
+    queryPacket.questions[0] != null &&
+    queryPacket.questions[0].name === tag
+  ) {
     const answers: Answer[] = []
 
     answers.push({

@@ -10,7 +10,7 @@ export namespace Node {
 }
 
 export default class Node {
-  private readonly options: Node.Options
+  protected readonly options: Node.Options
 
   constructor(options?: Partial<Node.Options>) {
     this.options = {

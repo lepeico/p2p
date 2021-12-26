@@ -1,5 +1,5 @@
 import connection, { Connection } from './connection'
-import { Stream } from './stream'
+import type { Stream } from './stream'
 import { Multiaddr, Protocol, protocols } from 'multiaddr'
 import {
   NetworkInterfaceInfoIPv4,
@@ -34,7 +34,12 @@ export default ({
       updatedConn = await updateFn(conn)
     } catch (err) {
       console.error('failed to update connection', err)
-      return conn && conn.close()
+
+      if (conn != null) {
+        conn.close()
+      }
+
+      return
     }
 
     console.debug('updated connection', conn.remoteAddr)
@@ -54,20 +59,20 @@ export default ({
 
   let listeningMultiaddr: any
 
-  // @ts-ignore
+  // @ts-expect-error
   listener.close = () => {
     server.__connections.forEach((conn: { close: () => any }) => conn.close())
     return server.close()
   }
 
-  // @ts-ignore
+  // @ts-expect-error
   listener.listen = (addr) => {
     listeningMultiaddr = addr
 
     return server.listen(addr.toOptions())
   }
 
-  // @ts-ignore
+  // @ts-expect-error
   listener.getAddrs = () => {
     const multiaddrs = []
     const address = server.address()
@@ -88,9 +93,9 @@ export default ({
         ? '/ws'
         : '/wss'
       let m = listeningMultiaddr!.decapsulate('tcp')
-      m = m.encapsulate('/tcp/' + address.port + wsProto)
+      m = m.encapsulate(`/tcp/${address.port}${wsProto}`)
       if (listeningMultiaddr!.getPeerId()) {
-        m = m.encapsulate('/p2p/' + nodeID)
+        m = m.encapsulate(`/p2p/${nodeID}`)
       }
 
       if (m.toString().indexOf('0.0.0.0') !== -1) {
@@ -117,7 +122,7 @@ export default ({
   return listener
 }
 
-function trackConn(server: WebSocket.Server, conn: Connection) {
-  // @ts-ignore
+function trackConn(server: WebSocket.Server, conn: Connection): void {
+  // @ts-expect-error
   server.__connections.push(conn)
 }

@@ -50,7 +50,7 @@ export default class WS {
     return upgradedConn
   }
 
-  private connect = async (addr: Multiaddr) => {
+  private readonly connect = async (addr: Multiaddr) => {
     const cOpts = addr.toOptions()
     console.debug('dialing %s:%s', cOpts.host, cOpts.port)
 
@@ -79,7 +79,7 @@ export default class WS {
       rawSocket.socket.onerror = errFn
     }
 
-    await Promise.race([rawSocket.connected(), errPromise.promise!])
+    await Promise.race([rawSocket.connected(), errPromise.promise])
     console.debug('connected', addr)
 
     return rawSocket

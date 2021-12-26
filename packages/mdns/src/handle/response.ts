@@ -1,6 +1,6 @@
-import { Answer, SrvAnswer, StringAnswer, TxtAnswer } from 'dns-packet'
+import type { Answer, SrvAnswer, StringAnswer, TxtAnswer } from 'dns-packet'
 import { Multiaddr } from 'multiaddr'
-import { QueryPacket } from 'multicast-dns'
+import type { QueryPacket } from 'multicast-dns'
 
 import debug = require('debug')
 
@@ -10,7 +10,7 @@ export default function (
   queryPacket: QueryPacket,
   nodeID: string,
   tag: string,
-) {
+): any {
   if (!queryPacket.answers) {
     return
   }

@@ -33,9 +33,9 @@ export interface Connection {
   localAddr?: Multiaddr
   remoteAddr: Multiaddr
 
-  sink(source: any): Promise<void>
+  sink: (source: any) => Promise<void>
 
-  close(): Promise<void>
+  close: () => Promise<void>
 }
 
 export default (
@@ -50,7 +50,8 @@ export default (
         ? multiAddr(stream.localAddress, stream.localPort)
         : undefined,
     remoteAddr:
-      options.remoteAddr || multiAddr(stream.remoteAddress, stream.remotePort),
+      options.remoteAddr != null ||
+      multiAddr(stream.remoteAddress, stream.remotePort),
     timeline: { open: Date.now(), close: -1 },
     async sink(source: any) {
       try {

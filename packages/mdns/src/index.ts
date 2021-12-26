@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
-import { Multiaddr } from 'multiaddr'
-import { MulticastDNS, QueryPacket } from 'multicast-dns'
+import type { Multiaddr } from 'multiaddr'
+import type { MulticastDNS, QueryPacket } from 'multicast-dns'
 
 import debug = require('debug')
 import mDNS = require('multicast-dns')
@@ -46,7 +46,7 @@ export default class MDNS extends EventEmitter {
   }
 
   start = (port: number = 13579) => {
-    if (this.mdns) return
+    if (this.mdns != null) return
 
     this.mdns = mDNS({ port })
     this.mdns.on('query', this.handleQuery)
@@ -73,7 +73,7 @@ export default class MDNS extends EventEmitter {
     return setInterval(query, this.options.queryInterval)
   }
 
-  private handleQuery = (queryPacket: QueryPacket) => {
+  private readonly handleQuery = (queryPacket: QueryPacket) => {
     handle.query(
       queryPacket,
       this.mdns!,
@@ -84,7 +84,7 @@ export default class MDNS extends EventEmitter {
     )
   }
 
-  private handleResponse = (queryPacket: QueryPacket) => {
+  private readonly handleResponse = (queryPacket: QueryPacket) => {
     try {
       const foundPeer = handle.response(
         queryPacket,
@@ -92,7 +92,7 @@ export default class MDNS extends EventEmitter {
         this.options.tag,
       )
 
-      if (foundPeer) {
+      if (foundPeer != null) {
         this.emit('peer', foundPeer)
       }
     } catch (err) {
@@ -101,7 +101,7 @@ export default class MDNS extends EventEmitter {
   }
 
   stop = async () => {
-    if (!this.mdns) {
+    if (this.mdns == null) {
       return
     }
 
