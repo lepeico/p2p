@@ -1,4 +1,4 @@
-import { Stream } from './stream'
+import type { Muxer } from '@p2p/interfaces'
 import { Address6 } from 'ip-address'
 import { Multiaddr } from 'multiaddr'
 
@@ -39,7 +39,7 @@ export interface Connection {
 }
 
 export default (
-  stream: Stream,
+  stream: Muxer.Stream,
   options: { remoteAddr?: Multiaddr } = {},
 ): Connection => {
   const connection = {
@@ -50,8 +50,7 @@ export default (
         ? multiAddr(stream.localAddress, stream.localPort)
         : undefined,
     remoteAddr:
-      options.remoteAddr != null ||
-      multiAddr(stream.remoteAddress, stream.remotePort),
+      options.remoteAddr ?? multiAddr(stream.remoteAddress, stream.remotePort),
     timeline: { open: Date.now(), close: -1 },
     async sink(source: any) {
       try {

@@ -11,6 +11,7 @@
     "supports-color": "^9.2.1"
   },
   "devDependencies": {
+    "@p2p/interfaces": "0.1.0",
     "@types/debug": "^4.1.7",
     "@types/dns-packet": "^5.2.4",
     "@types/multicast-dns": "^7.2.1",

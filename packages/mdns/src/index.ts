@@ -1,31 +1,34 @@
+import type { Discovery } from '@p2p/interfaces'
 import { EventEmitter } from 'events'
 import type { Multiaddr } from 'multiaddr'
 import type { MulticastDNS, QueryPacket } from 'multicast-dns'
 
-import debug = require('debug')
+import Debug = require('debug')
 import mDNS = require('multicast-dns')
 import handle = require('./handle')
 
-console.debug = debug('@p2p/mdns')
-console.error = debug('@p2p/mdns:error')
+const debug = Debug('@p2p/mdns')
+const error = Debug('@p2p/mdns:error')
 
 const DEFAULT_OPTIONS: MDNS.Options = {
   tag: 'p2p',
+  port: 13579,
   multiAddrs: [],
-  distribute: false,
-  queryInterval: 1000 * 5,
+  distribute: true,
+  queryInterval: 1000 * 15,
 }
 
 export namespace MDNS {
   export interface Options {
     tag: string
+    port: number
     distribute: boolean
-    multiAddrs: Multiaddr[]
     queryInterval: number
+    multiAddrs: Multiaddr[]
   }
 }
 
-export default class MDNS extends EventEmitter {
+export default class MDNS extends EventEmitter implements Discovery {
   private readonly nodeID: string
   private readonly options: MDNS.Options
 
@@ -42,13 +45,13 @@ export default class MDNS extends EventEmitter {
       ...options,
     }
 
-    console.debug('Created a MNDS instance')
+    debug('Created a MNDS instance')
   }
 
-  start = (port: number = 13579) => {
+  start = () => {
     if (this.mdns != null) return
 
-    this.mdns = mDNS({ port })
+    this.mdns = mDNS({ port: this.options.port })
     this.mdns.on('query', this.handleQuery)
     this.mdns.on('response', this.handleResponse)
 
@@ -57,7 +60,7 @@ export default class MDNS extends EventEmitter {
 
   private query() {
     const query = () => {
-      console.debug('query', this.options.tag)
+      debug('query', this.options.tag)
 
       this.mdns!.query({
         questions: [
@@ -96,7 +99,7 @@ export default class MDNS extends EventEmitter {
         this.emit('peer', foundPeer)
       }
     } catch (err) {
-      console.error('Error processing peer response', err)
+      error('Error processing peer response', err)
     }
   }
 

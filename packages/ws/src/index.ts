@@ -1,6 +1,7 @@
 import connection from './connection'
 import listener from './listener'
-import { Multiaddr } from 'multiaddr'
+import type { Transport } from '@p2p/interfaces'
+import type { Multiaddr } from 'multiaddr'
 
 import debug = require('debug')
 
@@ -20,7 +21,7 @@ export namespace WS {
   }
 }
 
-export default class WS {
+export default class WS implements Transport {
   private readonly options: WS.Options
 
   constructor(options?: Partial<WS.Options>) {

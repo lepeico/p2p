@@ -1,23 +1,64 @@
-import debug = require('debug')
+import type { Discovery, Transport } from '@p2p/interfaces'
+import Store from '@p2p/store'
+import type { Multiaddr } from 'multiaddr'
 
-console.debug = debug('@p2p/node')
-console.error = debug('@p2p/mdns:node')
+import Debug = require('debug')
+import EventEmitter = require('events')
 
-const DEFAULT_OPTIONS: Node.Options = {}
+const debug = Debug('@p2p/node')
+// const error = Debug('@p2p/node:error')
 
-export namespace Node {
-  export interface Options {}
+const DEFAULT_OPTIONS: Node.Options = {
+  transports: [],
+  discoveries: [],
+  multiAddrs: [],
 }
 
-export default class Node {
-  protected readonly options: Node.Options
+export namespace Node {
+  export interface Options {
+    transports: Transport.Factory[]
+    discoveries: Discovery.Factory[]
+    multiAddrs: Multiaddr[]
+  }
+}
 
-  constructor(options?: Partial<Node.Options>) {
+export default class Node extends EventEmitter {
+  protected readonly options: Node.Options
+  protected readonly discoveries: Discovery[]
+
+  public readonly ID: string
+  public readonly store: Store = new Store()
+
+  constructor(ID: string, options?: Partial<Node.Options>) {
+    super()
+
+    this.ID = ID
+
     this.options = {
       ...DEFAULT_OPTIONS,
       ...options,
     }
 
-    console.debug('Created a P2P Node instance')
+    this.discoveries = this.options.discoveries.map((Discovery) =>
+      new Discovery(this.ID, { multiAddrs: this.options.multiAddrs }).on(
+        'peer',
+        (metadata) => void this.emit('peer', metadata),
+      ),
+    )
+
+    debug('Created a P2P Node instance')
+  }
+
+  public start = () => {
+    this.discoveries.forEach((discovery) => void setImmediate(discovery.start))
+
+    this.on('peer', ({ id, multiaddrs }) => this.store.add(id, multiaddrs))
+  }
+
+  public stop = () => {
+    this.discoveries.forEach((discovery) => {
+      debug(discovery)
+      setImmediate(discovery.stop)
+    })
   }
 }

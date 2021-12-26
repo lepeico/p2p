@@ -1,17 +1,15 @@
 {
-  "name": "@p2p/node",
+  "name": "@p2p/yamux",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Eugene Lepeico",
   "main": "src/index.ts",
   "dependencies": {
-    "@p2p/store": "0.1.0",
     "debug": "^4.3.3",
     "multiaddr": "^10.0.1",
     "supports-color": "^9.2.1"
   },
   "devDependencies": {
-    "@p2p/interfaces": "0.1.0",
     "@types/debug": "^4.1.7",
     "@types/node": "^17.0.4"
   }

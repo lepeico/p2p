@@ -1,0 +1,13 @@
+{
+  "name": "@p2p/interfaces",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Eugene Lepeico",
+  "main": "src/index.ts",
+  "dependencies": {
+    "multiaddr": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.4"
+  }
+}

@@ -1,5 +1,5 @@
 import connection, { Connection } from './connection'
-import type { Stream } from './stream'
+import type { Muxer } from '@p2p/interfaces'
 import { Multiaddr, Protocol, protocols } from 'multiaddr'
 import {
   NetworkInterfaceInfoIPv4,
@@ -25,7 +25,7 @@ export default ({
 }) => {
   const listener = new EventEmitter()
 
-  const server = createServer({}, async (stream: Stream) => {
+  const server = createServer({}, async (stream: Muxer.Stream) => {
     let conn, updatedConn
 
     try {
