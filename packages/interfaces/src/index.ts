@@ -1,15 +1,13 @@
 import type { EventEmitter } from 'events'
 
 export interface Discovery extends EventEmitter {
-  start(): void
+  start: () => void
 
-  stop(): void
+  stop: () => void
 }
 
 export namespace Discovery {
-  export interface Factory {
-    new (nodeID: string, ptions?: any): Discovery
-  }
+  export type Factory = new (nodeID: string, ptions?: any) => Discovery
 }
 
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -17,9 +15,7 @@ export namespace Discovery {
 export interface Transport {}
 
 export namespace Transport {
-  export interface Factory {
-    new (options?: any): Transport
-  }
+  export type Factory = new (options?: any) => Transport
 }
 
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -27,9 +23,7 @@ export namespace Transport {
 export interface Muxer {}
 
 export namespace Muxer {
-  export interface Factory {
-    new (options: any): Muxer
-  }
+  export type Factory = new (options: any) => Muxer
 
   export interface Stream<T = Uint8Array> extends AsyncIterable<T> {
     close: () => void

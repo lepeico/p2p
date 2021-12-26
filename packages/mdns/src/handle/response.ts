@@ -58,24 +58,24 @@ export default function (
   }
 
   const port = answers.srv!.data.port
-  const multiaddrs: Multiaddr[] = []
+  const multiaddrs: Set<Multiaddr> = new Set()
 
   answers.a.forEach((a) => {
     const ma = new Multiaddr(`/ip4/${a.data}/tcp/${port}`)
 
-    if (!multiaddrs.some((m: Multiaddr) => m.equals(ma))) {
-      multiaddrs.push(ma)
+    if (![...multiaddrs].some((m: Multiaddr) => m.equals(ma))) {
+      multiaddrs.add(ma)
     }
   })
 
   answers.aaaa.forEach((a) => {
     const ma = new Multiaddr(`/ip6/${a.data}/tcp/${port}`)
 
-    if (!multiaddrs.some((m: Multiaddr) => m.equals(ma))) {
-      multiaddrs.push(ma)
+    if ([...multiaddrs].some((m: Multiaddr) => m.equals(ma))) {
+      multiaddrs.add(ma)
     }
   })
 
-  console.debug('found:', id)
+  console.debug(`found ${id} with addrs: ${[...multiaddrs].join(', ')}`)
   return { id, multiaddrs }
 }

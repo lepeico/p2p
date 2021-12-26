@@ -28,28 +28,26 @@ export default class Store extends EventEmitter {
     debug('Created a Store instance')
   }
 
-  public add = (nodeID: string, multiAddrs: Multiaddr[]): void => {
-    if (!multiAddrs.length) {
+  public add = (nodeID: string, multiAddrs: Set<Multiaddr>): void => {
+    if (!multiAddrs.size) {
       return
     }
 
     const entry = new Set(this.nodes.get(nodeID))
     if (entry && entry.size) {
-      multiAddrs.forEach((addr) => {
-        if (entry.has(addr)) {
+      entry.forEach((addr) => {
+        if ([...multiAddrs].some((ma) => ma.toString() === addr.toString())) {
           error(`the address ${addr} is already stored for ${nodeID}`)
           return
         }
 
-        entry.add(addr)
+        multiAddrs.add(addr)
       })
     }
 
-    this.nodes.set(nodeID, entry)
+    this.nodes.set(nodeID, multiAddrs)
 
     debug(`added multiaddrs for ${nodeID}`)
-
-    return
   }
 
   public get = (id: string): Multiaddr[] => {
