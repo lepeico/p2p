@@ -1,0 +1,19 @@
+{
+  "extends": "@nrwl/workspace/presets/core.json",
+  "npmScope": "p2p",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "NDVhM2EyODItZDBmMC00N2EzLTk4Y2UtMGRlNTMyNjc2NjU2fHJlYWQtd3JpdGU="
+      }
+    }
+  }
+}

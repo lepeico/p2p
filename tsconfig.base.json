@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2019", "DOM"],
+    "types": ["node", "jest"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@p2p/mdns": ["packages/mdns/src/index.ts"],
+      "@p2p/node": ["packages/node/src/index.ts"],
+      "@p2p/store": ["packages/store/src/index.ts"],
+      "@p2p/types": ["packages/types/src/index.ts"],
+      "@p2p/ws": ["packages/ws/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
