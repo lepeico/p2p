@@ -1,20 +1,11 @@
 {
   "name": "@p2p/mdns",
-  "version": "0.1.0",
-  "license": "MIT",
-  "author": "Eugene Lepeico",
-  "main": "src/index.ts",
+  "version": "0.0.1",
+  "type": "commonjs",
   "dependencies": {
-    "debug": "^4.3.3",
-    "multiaddr": "^10.0.1",
-    "multicast-dns": "^7.2.4",
-    "supports-color": "^9.2.1"
+    "multicast-dns": "^7.2.4"
   },
   "devDependencies": {
-    "@p2p/interfaces": "0.1.0",
-    "@types/debug": "^4.1.7",
-    "@types/dns-packet": "^5.2.4",
-    "@types/multicast-dns": "^7.2.1",
-    "@types/node": "^17.0.4"
+    "@types/multicast-dns": "^7.2.1"
   }
 }

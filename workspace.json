@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "examples-chat": "examples/chat",
+    "mdns": "packages/mdns",
+    "node": "packages/node",
+    "store": "packages/store",
+    "types": "packages/types",
+    "ws": "packages/ws"
+  }
+}

@@ -1,6 +1,12 @@
 # compiled output
 /dist
+/build
+/packages/*/dist
+/packages/*/build
+
+# packages
 /node_modules
+/packages/*/node_modules
 
 # Logs
 logs
@@ -16,6 +22,7 @@ lerna-debug.log*
 # Tests
 /coverage
 /.nyc_output
+/packages/*/coverage
 
 # IDEs and editors
 /.idea

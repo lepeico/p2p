@@ -1,0 +1,39 @@
+{
+  "root": "examples/chat",
+  "sourceRoot": "examples/chat/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/examples/chat",
+        "main": "examples/chat/src/index.ts",
+        "tsConfig": "examples/chat/tsconfig.app.json",
+        "assets": ["examples/chat/*.md"]
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "examples-chat:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["examples/chat/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/examples/chat"],
+      "options": {
+        "jestConfig": "examples/chat/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
