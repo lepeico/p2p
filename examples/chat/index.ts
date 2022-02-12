@@ -1,8 +1,7 @@
 import MDNS from '@p2p/mdns'
 import Node from '@p2p/node'
-import { Multiaddr } from 'multiaddr'
-
 // import WS from '@p2p/ws'
+import { Multiaddr } from 'multiaddr'
 
 const node = new Node(Math.random().toString(32), {
   // transports: [WS],

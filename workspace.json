@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "projects": {
+    "mdns": "packages/mdns",
+    "node": "packages/node",
+    "store": "packages/store",
+    "types": "packages/types",
+    "ws": "packages/ws",
+    "yamux": "packages/yamux"
+  }
+}

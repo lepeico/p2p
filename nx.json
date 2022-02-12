@@ -1,0 +1,51 @@
+{
+  "extends": "@nrwl/workspace/presets/npm.json",
+  "npmScope": "p2p",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "package",
+          "prepare"
+        ],
+        "accessToken": "YjQ2YmZkYTctMzA3MC00YWEyLWEyNjYtZTQ1MjUzZGE2YTEwfHJlYWQtd3JpdGU=",
+        "useDaemonProcess": true
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "prepare": [
+      {
+        "target": "prepare",
+        "projects": "dependencies"
+      }
+    ],
+    "package": [
+      {
+        "target": "package",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "workspaceLayout": {
+    "libsDir": "",
+    "appsDir": ""
+  },
+  "implicitDependencies": {
+    "package.json": "*",
+    ".eslintrc.json": "*"
+  }
+}

@@ -1,5 +1,5 @@
 import connection, { Connection } from './connection'
-import type { Muxer } from '@p2p/interfaces'
+import type { Muxer } from '@p2p/types'
 import { Multiaddr, Protocol, protocols } from 'multiaddr'
 import {
   NetworkInterfaceInfoIPv4,

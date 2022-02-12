@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Eugene Lepeico",
-  "main": "src/index.ts",
+  "main": "index.ts",
   "dependencies": {
     "debug": "^4.3.3",
     "multiaddr": "^10.0.1",

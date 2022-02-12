@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019"],
+    "declaration": true,
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
+    "importsNotUsedAsValues": "error",
+    "strict": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    /* This needs to be false so our types are possible to consume without setting this */
+    "esModuleInterop": false,
+    "resolveJsonModule": true,
+    //
+    "target": "es2015",
+    "sourceMap": true,
+    "importHelpers": true,
+    "module": "esnext",
+    "outDir": "build",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@p2p/mdns": ["./packages/mdns"],
+      "@p2p/node": ["./packages/node"],
+      "@p2p/store":  ["./packages/store"],
+      "@p2p/types":  ["./packages/types"],
+      "@p2p/ws": ["./packages/ws"],
+      "@p2p/yamux":  ["./packages/yamux"]
+    }
+  },
+  "exclude": [
+    ".yarn/releases/*"
+  ]
+}

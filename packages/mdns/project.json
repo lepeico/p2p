@@ -1,0 +1,23 @@
+{
+  "root": "packages/mdns",
+  "sourceRoot": "packages/mdns",
+  "projectType": "library",
+  "tags": ["discovery"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/mdns/**/*.{ts,js}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/mdns"],
+      "options": {
+        "jestConfig": "packages/mdns/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

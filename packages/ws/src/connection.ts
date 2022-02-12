@@ -1,4 +1,4 @@
-import type { Muxer } from '@p2p/interfaces'
+import type { Muxer } from '@p2p/types'
 import { Address6 } from 'ip-address'
 import { Multiaddr } from 'multiaddr'
 

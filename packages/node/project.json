@@ -1,0 +1,23 @@
+{
+  "root": "packages/node",
+  "sourceRoot": "packages/node",
+  "projectType": "library",
+  "tags": ["discovery"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/node/**/*.{ts,js}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/node"],
+      "options": {
+        "jestConfig": "packages/node/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
