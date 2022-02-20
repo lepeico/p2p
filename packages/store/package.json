@@ -2,7 +2,5 @@
   "name": "@p2p/store",
   "version": "0.0.1",
   "type": "commonjs",
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
